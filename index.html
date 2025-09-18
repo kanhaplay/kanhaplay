@@ -1,235 +1,267 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kanha Play - Where Wisdom Meets Wonder</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kanha Play — Login / Signup</title>
   <style>
-    /* General Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Trebuchet MS', sans-serif;
-    }
-
-    body {
-      background: url('https://share.google/images/9MV6jpFQUvE6AteUl') no-repeat center center fixed;
-      background-size: cover;
-      color: #2c2c2c;
-    }
-
-    /* Header */
-    header {
-      background: rgba(59, 89, 152, 0.9);
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 30px;
-      flex-wrap: wrap;
-    }
-
-    header .logo-title {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    header .logo-title img {
-      height: 80px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    header .logo-title .titles {
-      display: flex;
-      flex-direction: column;
-    }
-
-    header h1 {
-      font-size: 28px;
-      color: #ffe066;
-    }
-
-    header h2 {
-      font-size: 16px;
-      font-style: italic;
-      color: #ffeb99;
-    }
-
-    header nav {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    header nav button {
-      padding: 8px 16px;
-      background: #ffe066;
-      border: none;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    header nav button:hover {
-      background: #f9c74f;
-      transform: scale(1.05);
-    }
-
-    /* Sound Icon */
-    #sound-toggle {
-      font-size: 20px;
-      cursor: pointer;
-      padding: 5px 8px;
-      border-radius: 50%;
-      transition: 0.3s;
-    }
-
-    #sound-toggle:hover {
-      background: rgba(255, 255, 0, 0.4);
-    }
-
-    /* Main Section */
-    main {
-      text-align: left;
-      padding: 40px 30px;
-      max-width: 1000px;
-      margin: 60px auto;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 15px;
-    }
-
-    main h2 {
-      font-size: 28px;
-      color: #2a9d8f;
-      margin-bottom: 20px;
-    }
-
-    main h3 {
-      font-size: 22px;
-      color: #264653;
-      margin-bottom: 15px;
-      margin-top: 20px;
-    }
-
-    main p {
-      font-size: 17px;
-      line-height: 1.8;
-      margin-bottom: 15px;
-      color: #333;
-    }
-
-    main ul {
-      margin-left: 20px;
-      margin-bottom: 20px;
-    }
-
-    main li {
-      margin-bottom: 10px;
-      font-size: 16px;
-      color: #333;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: 40px;
-      background: rgba(59, 89, 152, 0.9);
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-
-    footer p {
-      margin-bottom: 10px;
-    }
-
-    footer .social-icons img {
-      height: 30px;
-      margin: 0 8px;
-      cursor: pointer;
-      filter: brightness(0) invert(1);
-    }
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f8fafc; color:#111; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:12px 18px; background:#fff; box-shadow:0 1px 6px rgba(0,0,0,0.06);}
+    #logo { font-weight:700; font-size:18px; color:#0b5; }
+    button { padding:8px 12px; border-radius:6px; border: none; cursor:pointer; background:#2563eb; color:#fff; }
+    button.secondary { background:#10b981; }
+    .hidden { display:none; }
+    .modal { display:none; position:fixed; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index:50; }
+    .modal .box { background:#fff; width:360px; padding:18px; border-radius:10px; box-shadow:0 6px 24px rgba(0,0,0,0.14); }
+    input[type="email"], input[type="password"], input[type="text"] { width:100%; padding:10px; margin:6px 0 12px; border:1px solid #ddd; border-radius:6px; }
+    .close { float:right; cursor:pointer; font-size:18px; color:#666; }
+    .error { color:#b91c1c; font-size:13px; min-height:18px; }
+    .success { color:#065f46; font-size:13px; min-height:18px; }
+    footer { padding:12px 18px; text-align:center; font-size:13px; color:#666; margin-top:30px; }
   </style>
 </head>
 <body>
-  <!-- Background Music -->
-  <audio id="bg-music" autoplay loop>
-    <source src="Audio.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
 
-  <!-- Header -->
   <header>
-    <div class="logo-title">
-      <img src="LOGO.jpg" alt="Kanha Play Logo">
-      <div class="titles">
-        <h1>Kanha Play</h1>
-        <h2>Where Wisdom Meets Wonder</h2>
-      </div>
+    <div id="logo">Kanha Play</div>
+    <div id="authButtons">
+      <button id="loginBtn">Login</button>
+      <button id="signupBtn" class="secondary">Sign Up</button>
     </div>
-    <nav>
-      <button>Login</button>
-      <button>Sign Up</button>
-      <span id="sound-toggle">🔊</span>
-    </nav>
+    <div id="userPanel" class="hidden">
+      <span id="userEmail" style="margin-right:12px;"></span>
+      <button id="logoutBtn">Logout</button>
+    </div>
   </header>
 
-  <!-- Main Section -->
-  <main>
-    <h2>About Kanha Play</h2>
-    <p>Kanha Play is an <b>innovative gamified learning platform</b> that transforms traditional education into an <b>interactive and enjoyable experience</b>. Unlike conventional teaching methods that rely on lectures or videos, this platform focuses entirely on <b>educational games, quizzes, and reward-based challenges</b> to teach core concepts. Each activity is designed to stimulate curiosity, reinforce understanding, and encourage students to actively engage with the material.</p>
-
-    <h3>Key Features:</h3>
-    <ul>
-      <li><b>Educational Games:</b> Interactive games aligned with learning objectives help students understand concepts through hands-on problem-solving.</li>
-      <li><b>Quizzes & Challenges:</b> Periodic quizzes test knowledge and critical thinking, offering instant feedback to improve learning outcomes.</li>
-      <li><b>Badges & Rewards:</b> Students earn badges, points, and level-ups as they complete tasks, motivating continued engagement and fostering a sense of achievement.</li>
-      <li><b>Progress Tracking:</b> Students and teachers can monitor progress, identify strengths and areas for improvement, and celebrate accomplishments.</li>
-      <li><b>Cultural Inspiration:</b> The platform draws inspiration from the playful and joyful spirit of Lord Krishna (Kanha), making the learning journey delightful and memorable.</li>
-    </ul>
-
-    <h3>Educational Impact:</h3>
-    <p>Kanha Play promotes active learning, critical thinking, and problem-solving skills. By making education fun and rewarding, it helps students develop intrinsic motivation for learning, ensuring that knowledge is not only gained but also retained.</p>
-
-    <h3>Relation to the Name:</h3>
-    <ul>
-      <li><b>Kanha:</b> Represents joy, playfulness, and cultural inspiration, aligning with the platform’s interactive approach.</li>
-      <li><b>Play:</b> Highlights the gamified nature of learning—students learn by engaging in games, challenges, and quizzes rather than passive study.</li>
-    </ul>
-
-    <h3>Mission Statement:</h3>
-    <p>Kanha Play aims to create a joyful, immersive, and meaningful learning experience where wisdom meets wonder, blending education with fun to cultivate both knowledge and curiosity.</p>
+  <main style="padding:20px;">
+    <h1>Welcome to Kanha Play</h1>
+    <p>Interactive & gamified learning platform. Login or Sign up to get started.</p>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>📞 Contact Us | ✉️ info@kanhaplay.com</p>
-    <div class="social-icons">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Facebook_Logo.png" alt="Facebook">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Twitter_logo.svg" alt="Twitter">
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal" aria-hidden="true">
+    <div class="box">
+      <span class="close" data-close="loginModal">&times;</span>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input id="loginEmail" type="email" placeholder="Email" required />
+        <input id="loginPassword" type="password" placeholder="Password" required />
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <a href="#" id="forgotLink" style="font-size:13px;">Forgot password?</a>
+        </div>
+        <div id="loginError" class="error"></div>
+        <button type="submit">Login</button>
+      </form>
     </div>
-  </footer>
+  </div>
 
-  <!-- Sound Toggle Script -->
-  <script>
-    const soundToggle = document.getElementById('sound-toggle');
-    const bgMusic = document.getElementById('bg-music');
-    let isPlaying = true;
+  <!-- Signup Modal -->
+  <div id="signupModal" class="modal" aria-hidden="true">
+    <div class="box">
+      <span class="close" data-close="signupModal">&times;</span>
+      <h2>Sign Up</h2>
+      <form id="signupForm">
+        <input id="signupName" type="text" placeholder="Full name (optional)" />
+        <input id="signupEmail" type="email" placeholder="Email" required />
+        <input id="signupPassword" type="password" placeholder="Password (min 6 chars)" required />
+        <div id="signupError" class="error"></div>
+        <div id="signupSuccess" class="success"></div>
+        <button type="submit">Create account</button>
+      </form>
+    </div>
+  </div>
 
-    soundToggle.addEventListener('click', () => {
-      if (isPlaying) {
-        bgMusic.pause();
-        soundToggle.textContent = '🔇';
-      } else {
-        bgMusic.play();
-        soundToggle.textContent = '🔊';
+  <!-- Password Reset Modal -->
+  <div id="resetModal" class="modal" aria-hidden="true">
+    <div class="box">
+      <span class="close" data-close="resetModal">&times;</span>
+      <h2>Reset Password</h2>
+      <form id="resetForm">
+        <input id="resetEmail" type="email" placeholder="Email" required />
+        <div id="resetMsg" class="success"></div>
+        <div id="resetError" class="error"></div>
+        <button type="submit">Send Reset Email</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>© Kanha Play</footer>
+
+  <!-- Firebase & App logic -->
+  <script type="module">
+    // IMPORTS (CDN)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      sendEmailVerification,
+      sendPasswordResetEmail
+    } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    // ---- PASTE YOUR FIREBASE CONFIG OBJECT HERE ----
+    // Import the functions you need from the SDKs you need
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAOygIr6d3O9fUh-Gs7SAJyAc1sbDdLB8w",
+    authDomain: "kanhaplay-d1026.firebaseapp.com",
+    projectId: "kanhaplay-d1026",
+    storageBucket: "kanhaplay-d1026.firebasestorage.app",
+    messagingSenderId: "850483473532",
+    appId: "1:850483473532:web:ae88b0785f7510e2a22df9",
+    measurementId: "G-FRB49CJJCM"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth(app);
+</script>
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+    // ------------------------------------------------
+
+    // Initialize
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // DOM refs
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+    const resetModal = document.getElementById('resetModal');
+    const userPanel = document.getElementById('userPanel');
+    const authButtons = document.getElementById('authButtons');
+    const userEmailSpan = document.getElementById('userEmail');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    function openModal(id){ const el=document.getElementById(id); el.style.display='flex'; el.setAttribute('aria-hidden','false'); }
+    function closeModal(id){ const el=document.getElementById(id); el.style.display='none'; el.setAttribute('aria-hidden','true'); 
+      if(id==='signupModal') { document.getElementById('signupError').textContent=''; document.getElementById('signupSuccess').textContent=''; }
+      if(id==='loginModal') document.getElementById('loginError').textContent='';
+      if(id==='resetModal'){ document.getElementById('resetError').textContent=''; document.getElementById('resetMsg').textContent=''; }
+    }
+
+    loginBtn.addEventListener('click', ()=>openModal('loginModal'));
+    signupBtn.addEventListener('click', ()=>openModal('signupModal'));
+    document.querySelectorAll('.close').forEach(el=>el.addEventListener('click', e=>closeModal(e.target.dataset.close)));
+    document.getElementById('forgotLink').addEventListener('click', (e)=>{ e.preventDefault(); openModal('resetModal'); });
+
+    // SIGNUP — create user, send verification, save profile to Firestore
+    document.getElementById('signupForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('signupName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const password = document.getElementById('signupPassword').value;
+      const signupError = document.getElementById('signupError');
+      const signupSuccess = document.getElementById('signupSuccess');
+      signupError.textContent=''; signupSuccess.textContent='';
+
+      try {
+        const userCred = await createUserWithEmailAndPassword(auth, email, password);
+        // Send verification email
+        await sendEmailVerification(userCred.user);
+        // Save a small profile in Firestore
+        try {
+          await setDoc(doc(db, 'users', userCred.user.uid), {
+            name: name || null,
+            email: email,
+            createdAt: serverTimestamp(),
+            points: 0
+          });
+        } catch (fireErr) {
+          console.warn('Could not save profile to Firestore:', fireErr);
+        }
+        signupSuccess.textContent = 'Account created — verification email sent. Check inbox.';
+        setTimeout(()=>closeModal('signupModal'), 1500);
+      } catch (err) {
+        signupError.textContent = err.message;
+        console.error('Signup error', err);
       }
-      isPlaying = !isPlaying;
     });
+
+    // LOGIN — if not verified, sign out & show message
+    document.getElementById('loginForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const loginError = document.getElementById('loginError');
+      loginError.textContent='';
+
+      try {
+        const credential = await signInWithEmailAndPassword(auth, email, password);
+        if(!credential.user.emailVerified){
+          // require verification before allowing full access
+          loginError.textContent = 'Please verify your email first (check your inbox).';
+          await signOut(auth);
+        } else {
+          closeModal('loginModal');
+        }
+      } catch (err) {
+        loginError.textContent = err.message;
+        console.error('Login error', err);
+      }
+    });
+
+    // PASSWORD RESET
+    document.getElementById('resetForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('resetEmail').value.trim();
+      const resetError = document.getElementById('resetError');
+      const resetMsg = document.getElementById('resetMsg');
+      resetError.textContent=''; resetMsg.textContent='';
+
+      try {
+        await sendPasswordResetEmail(auth, email);
+        resetMsg.textContent = 'Password reset email sent — check your inbox.';
+        setTimeout(()=>closeModal('resetModal'), 1200);
+      } catch (err) {
+        resetError.textContent = err.message;
+        console.error('Reset error', err);
+      }
+    });
+
+    // LOGOUT
+    logoutBtn.addEventListener('click', async ()=>{
+      try { await signOut(auth); } catch(err){ console.error('Logout error', err); }
+    });
+
+    // AUTH STATE — update UI
+    onAuthStateChanged(auth, (user)=>{
+      if(user){
+        authButtons.classList.add('hidden');
+        userPanel.classList.remove('hidden');
+        userEmailSpan.textContent = user.email + (user.emailVerified ? '' : ' (unverified)');
+        console.log('User signed in:', user.uid, user.email);
+      } else {
+        authButtons.classList.remove('hidden');
+        userPanel.classList.add('hidden');
+        userEmailSpan.textContent = '';
+        console.log('No user signed in');
+      }
+    });
+
+    // click outside to close
+    window.addEventListener('click', (e)=>{
+      if(e.target===loginModal) closeModal('loginModal');
+      if(e.target===signupModal) closeModal('signupModal');
+      if(e.target===resetModal) closeModal('resetModal');
+    });
+
   </script>
 </body>
 </html>
