@@ -7,7 +7,22 @@
   <style>
     /* Keep your existing CSS, adding modal styles */
     * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Trebuchet MS', sans-serif;}
-    body { background: url('bg.jpg') no-repeat center center fixed; }
+    /* Remove background from body */
+body {
+  background: #f5f5f5; /* optional: a plain background for header & footer */
+}
+
+/* Add background only to main */
+main {
+  text-align: left;
+  padding: 40px 30px;
+  max-width: 1000px;
+  margin: 60px auto;
+  background: url('bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  border-radius: 15px;
+}
+
 
     header {background: rgba(59, 89, 152, 0.9); color: white; display: flex; justify-content: space-between; align-items: center; padding: 10px 30px; flex-wrap: wrap;}
     header .logo-title {display: flex; align-items: center; gap: 15px;}
@@ -189,6 +204,7 @@ document.getElementById("signup-submit").addEventListener("click", async (e) => 
   </script>
 </body>
 </html>
+
 
 
 
