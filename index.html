@@ -148,32 +148,32 @@
     window.closeModal = (id) => document.getElementById(id).style.display = "none";
 
     // Login
-    document.getElementById("login-submit").addEventListener("click", async (e) => {
-      e.preventDefault();
-      const email = document.getElementById("login-email").value;
-      const password = document.getElementById("login-password").value;
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        alert("Login successful 🎉");
-        closeModal('loginModal');
-      } catch (error) {
-        alert(error.message);
-      }
-    });
+document.getElementById("login-submit").addEventListener("click", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("login-email").value;
+  const password = document.getElementById("login-password").value;
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    // Redirect to dashboard page
+    window.location.href = "dashboard.html";
+  } catch (error) {
+    alert(error.message);
+  }
+});
 
-    // Sign Up
-    document.getElementById("signup-submit").addEventListener("click", async (e) => {
-      e.preventDefault();
-      const email = document.getElementById("signup-email").value;
-      const password = document.getElementById("signup-password").value;
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        alert("Sign up successful 🎉");
-        closeModal('signupModal');
-      } catch (error) {
-        alert(error.message);
-      }
-    });
+// Sign Up
+document.getElementById("signup-submit").addEventListener("click", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("signup-email").value;
+  const password = document.getElementById("signup-password").value;
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    // Redirect to dashboard page
+    window.location.href = "dashboard.html";
+  } catch (error) {
+    alert(error.message);
+  }
+});
   </script>
 
   <!-- Sound Toggle -->
@@ -189,3 +189,4 @@
   </script>
 </body>
 </html>
+
